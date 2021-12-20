@@ -1,12 +1,12 @@
 <?php
 session_start();
-$db = new PDO('mysql:host=localhost;dbname=espace_admin', 'root', '');
+require_once('../database/database.php');
 $get_membres = $db->prepare("SELECT * FROM membres");
 $result = $get_membres->execute();
 $nb_membres = $get_membres->rowCount();
-$list_membres = $get_membres->fetchAll(PDO::FETCH_ASSOC);
+$list_membres = $get_membres->fetchAll();
 if (!$_SESSION['pseudo']) {
-    header('Location: connexion.php');
+    header('Location: ../connexion.php');
 }
 ?>
 
@@ -42,6 +42,7 @@ if (!$_SESSION['pseudo']) {
         <?php endif; ?>
     </ul>
     <!-- Fin d'affichage des membres -->
+    <a href="../index.php">Retour à l'accueil</a>
 </body>
 
 </html>

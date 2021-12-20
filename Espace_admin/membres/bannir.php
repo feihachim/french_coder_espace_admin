@@ -1,6 +1,6 @@
 <?php
 session_start();
-$db = new PDO('mysql:host=localhost;dbname=espace_admin', 'root', '');
+require_once('../database/database.php');
 if (!empty($_GET['id'])) {
     $getid = $_GET['id'];
     $get_membre = $db->prepare("SELECT * FROM membres WHERE id=:id");

@@ -1,7 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['pseudo']))
-{
+if (!isset($_SESSION['pseudo'])) {
     header('Location: connexion.php');
 }
 ?>
@@ -17,8 +16,9 @@ if (!isset($_SESSION['pseudo']))
 </head>
 
 <body>
-    <a href="./membres.php">Afficher tous les membres</a>
-    <a href="./publier-article.php">Publier un nouvel article</a>
+    <a href="./membres/membres.php">Afficher tous les membres</a>
+    <a href="./articles/articles.php">Afficher tous les articles</a>
+    <a href="logout.php">Log out</a>
 </body>
 
 </html>

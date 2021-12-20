@@ -1,15 +1,12 @@
 <?php
 session_start();
-$db = new PDO('mysql:host=localhost;dbname=espace_admin', 'root', '');
-if (!isset($_SESSION['pseudo']))
-{
-    header('Location: connexion.php');
+require_once('../database/database.php');
+if (!isset($_SESSION['pseudo'])) {
+    header('Location: ../connexion.php');
 }
 
-if (isset($_POST['envoi']))
-{
-    if (!empty($_POST['titre']) and !empty($_POST['description']))
-    {
+if (isset($_POST['envoi'])) {
+    if (!empty($_POST['titre']) and !empty($_POST['description'])) {
         $titre = htmlspecialchars(strip_tags($_POST['titre']));
         $description = nl2br(htmlspecialchars($_POST['description']));
         $postArticle = $db->prepare("INSERT INTO articles (titre,description) VALUES(:titre,:description)");
@@ -18,9 +15,7 @@ if (isset($_POST['envoi']))
         $postArticle->execute();
 
         echo "L'article a bien été envoyé";
-    }
-    else
-    {
+    } else {
         echo "Veuillez compléter tous les champs...";
     }
 }
@@ -44,6 +39,7 @@ if (isset($_POST['envoi']))
         <br>
         <input type="submit" name="envoi" value="Envoyer">
     </form>
+    <a href="articles.php">Retour</a>
 </body>
 
 </html>
